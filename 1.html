@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CHANGEMEPLS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #050505;
+      color: #f5f5f5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shell {
+      width: min(720px, 100vw - 2rem);
+      border: 1px solid #222;
+      border-radius: 8px;
+      background: #0b0b0b;
+      box-shadow: 0 0 0 1px #000, 0 18px 40px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    .shell-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.75rem;
+      background: linear-gradient(to bottom, #111, #0b0b0b);
+      border-bottom: 1px solid #181818;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #8b8b8b;
+    }
+    .dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #242424;
+    }
+    .shell-main {
+      padding: 0.75rem 0.75rem 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .path {
+      color: #6ee7b7;
+    }
+    .muted {
+      color: #737373;
+    }
+    .entry {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .entry-prefix {
+      color: #404040;
+      flex: 0 0 auto;
+    }
+    .entry-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .browse-grid {
+      margin-top: 0.4rem;
+      border-top: 1px solid #111;
+      padding-top: 0.4rem;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      column-gap: 1.5rem;
+      row-gap: 0.2rem;
+      font-size: 0.8rem;
+    }
+    .browse-head {
+      color: #6b7280;
+    }
+    .browse-name {
+      color: #e5e5e5;
+    }
+    .browse-size,
+    .browse-date {
+      color: #6b7280;
+    }
+    .fake-link {
+      cursor: default;
+      text-decoration: none;
+    }
+    .fake-link:hover {
+      text-decoration: none;
+    }
+    .fake {
+      cursor: default;
+      pointer-events: none;
+    }
+    .upload-zone {
+      margin-top: 0.8rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #111;
+    }
+
+    .upload-label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      color: #d4d4d4;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: #050505;
+      z-index: 0;
+    }
+    .upload-label::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 3px;
+      background: linear-gradient(
+        120deg,
+        #f97316,
+        #facc15,
+        #22c55e,
+        #06b6d4,
+        #3b82f6,
+        #a855f7,
+        #ec4899,
+        #f97316
+      );
+      background-size: 300% 300%;
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rainbow 6s linear infinite;
+      opacity: 0.9;
+      z-index: -1;
+    }
+    .upload-label span {
+      opacity: 0.9;
+    }
+    .upload-input {
+      display: none;
+    }
+    .echo {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: #a3a3a3;
+      min-height: 1.1em;
+    }
+    .echo-filename {
+      color: #e5e5e5;
+    }
+    .blink {
+      display: inline-block;
+      width: 7px;
+      margin-left: 2px;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    @media (max-width: 480px) {
+      .browse-grid {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+      }
+      .browse-date {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="shell-header">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>CHANGEMEPLS</div>
+      <div></div>
+    </div>
+    <div class="shell-main">
+      <div class="entry">
+        <div class="entry-prefix">user@host</div>
+        <div class="entry-content">
+          <span class="muted">in</span>
+          <span class="path">/var/www/html</span>
+        </div>
+      </div>
+
+      <div class="entry" style="margin-top:0.25rem;">
+        <div class="entry-prefix">$</div>
+        <div class="entry-content muted fake">ls</div>
+      </div>
+
+      <div class="browse-grid">
+        <div class="browse-head">Name</div>
+        <div class="browse-head">Size</div>
+        <div class="browse-head">Modified</div>
+
+        <div class="browse-name">..</div>
+        <div class="browse-size">—</div>
+        <div class="browse-date">loop</div>
+
+        <div class="browse-name">.</div>
+        <div class="browse-size">—</div>
+        <div class="browse-date">loop</div>
+
+        <div class="browse-name"><span class="fake-link">1.html</span></div>
+        <div class="browse-size">0 B</div>
+        <div class="browse-date">never</div>
+      </div>
+
+      <div class="upload-zone">
+        <label class="upload-label">
+          <span>➕</span>
+          <span>upload</span>
+          <input class="upload-input" type="file" id="upload" multiple>
+        </label>
+        <div class="echo" id="echo"></div>
+      </div>
+
+      <div class="entry" style="margin-top:0.35rem;">
+        <div class="entry-prefix">$</div>
+        <div class="entry-content">
+          <span class="muted"></span><span class="blink">▌</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var input = document.getElementById('upload');
+      var echo = document.getElementById('echo');
+
+      if (!input || !echo) return;
+
+      input.addEventListener('change', function () {
+        if (!input.files || input.files.length === 0) {
+          echo.textContent = '';
+          return;
+        }
+
+        var names = [];
+        for (var i = 0; i < input.files.length; i++) {
+          names.push(input.files[i].name);
+        }
+
+        echo.innerHTML = '<span class="muted">/dev/null &lt;-</span> ' +
+          '<span class="echo-filename">' + names.join(', ') + '</span>';
+      });
+    }());
+  </script>
+</body>
+</html>

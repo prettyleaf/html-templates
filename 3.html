@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CHANGEMEPLS</title>
+  <style>
+    body{
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    .message{
+      width:440px;
+      padding:20px 40px;
+      margin:40px auto;
+      background-color:#f9f9f9;
+      border:1px solid #ddd;
+      color:#1e3d62;
+      text-align:left;
+    }
+    h1{
+      font-size:18px;
+      line-height:26px;
+      margin-top:0;
+    }
+    p{
+      font-size:12px;
+    }
+    a{
+      color:rgb(207,48,139);
+    }
+    .btn{
+      display:inline-block;
+      margin-top:16px;
+      padding:6px 14px;
+      font-size:12px;
+      border:1px solid #ccc;
+      background:#fff;
+      color:#1e3d62;
+      cursor:pointer;
+    }
+    .btn:active{
+      background:#eee;
+    }
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.35);
+      display:none;
+      align-items:center;
+      justify-content:center;
+    }
+    .dialog{
+      background:#f9f9f9;
+      border:1px solid #ddd;
+      padding:16px 20px;
+      width:260px;
+      color:#1e3d62;
+    }
+    .dialog h2{
+      font-size:14px;
+      margin:0 0 10px;
+    }
+    .dialog label{
+      display:block;
+      font-size:12px;
+      margin-top:6px;
+    }
+    .dialog input[type="text"],
+    .dialog input[type="password"]{
+      width:100%;
+      box-sizing:border-box;
+      padding:4px;
+      font-size:12px;
+      margin-top:2px;
+      border:1px solid #ccc;
+    }
+    .dialog .row{
+      margin-top:8px;
+      font-size:12px;
+    }
+    .dialog .captcha{
+      margin-top:8px;
+      padding:6px;
+      background:#fff;
+      border:1px solid #ccc;
+      font-size:11px;
+    }
+    .dialog .actions{
+      margin-top:10px;
+      text-align:right;
+    }
+    .dialog .actions button{
+      padding:4px 10px;
+      font-size:12px;
+      border:1px solid #ccc;
+      background:#fff;
+      color:#1e3d62;
+      cursor:pointer;
+    }
+    .dialog .actions button:active{
+      background:#eee;
+    }
+    .captcha span{
+      display:block;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <h1>Welcome</h1>
+    <p>This is a small static landing page served by your web server.</p>
+    <p>You can replace this text with links or information about the services you are hosting.</p>
+    <p>To customize this page further, edit the HTML file in your web root.</p>
+    <button class="btn" id="open-login">Administration</button>
+  </div>
+
+  <div class="overlay" id="login-overlay">
+    <div class="dialog">
+      <h2>Administration</h2>
+      <label>Username
+        <input type="text" autocomplete="off">
+      </label>
+      <label>Password
+        <input type="password" autocomplete="off">
+      </label>
+      <div class="captcha">
+        <span>Captcha challenge:</span>
+        <span id="captcha-text">Loading...</span>
+        <span style="margin-top:4px;">Answer:
+          <input type="text" style="width:60px;border:1px solid #ccc;padding:2px;font-size:11px;" autocomplete="off">
+        </span>
+      </div>
+      <div class="actions">
+        <button type="button" id="close-login">Close</button>
+        <button type="button" id="fake-submit">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var openBtn = document.getElementById('open-login');
+      var overlay = document.getElementById('login-overlay');
+      var closeBtn = document.getElementById('close-login');
+      var submitBtn = document.getElementById('fake-submit');
+      var captchaText = document.getElementById('captcha-text');
+      var note = document.getElementById('captcha-note');
+
+      function randomCaptcha() {
+        var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        var out = '';
+        for (var i = 0; i < 6; i++) {
+          out += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return out;
+      }
+
+      function resetCaptcha() {
+        captchaText.textContent = randomCaptcha();
+        note.textContent = 'Verification failed, please try again.';
+      }
+
+      openBtn.addEventListener('click', function () {
+        overlay.style.display = 'flex';
+        resetCaptcha();
+      });
+
+      closeBtn.addEventListener('click', function () {
+        overlay.style.display = 'none';
+      });
+
+      submitBtn.addEventListener('click', function () {
+        resetCaptcha();
+      });
+    }());
+  </script>
+</body>
+</html>
